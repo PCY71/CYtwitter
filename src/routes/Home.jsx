@@ -1,31 +1,26 @@
 import React, { useEffect, useState } from 'react';
+import Tweet from '../components/Tweet';
 import { dbService } from '../fbase';
 
-const Home = () => {
+const Home = ({userObj}) => {
     const [tweet, setTweet] = useState("");
     const [tweets, setTweets] = useState([]);
-    
-    const getTweets = async () =>{
-        const data = await dbService.collection("tweets").get();
-        data.forEach((doc) => {
-            const docObj = {
-                // keys : createAt, tweet, id
-                ...doc.data(),
-                id : doc.id,
-            }
-            setTweets((prev) => [...prev, docObj]);
-        })        
-    };
 
     useEffect(() =>{
-        getTweets();
+        dbService.collection("tweets").onSnapshot(snapshot => {
+            setTweets(snapshot.docs.map(doc => ({
+                id:doc.id, 
+                ...doc.data()
+            })));
+        })
     }, [])
 
     const onSubmit = async (event) =>{
         event.preventDefault();
         await dbService.collection("tweets").add({
-            tweet,
+            text: tweet,
             createAt: Date.now(),
+            creatorId: userObj.multiFactor.user.uid,
         });
         setTweet("");
     };
@@ -33,8 +28,6 @@ const Home = () => {
         const {target:{value}} = event;
         setTweet(value);
     };
-
-    console.log(tweets)
 
     return (
     <div>
@@ -44,9 +37,10 @@ const Home = () => {
         </form>
         <div>
             {tweets.map(tweet => 
-                    <div key={tweet.id}>
-                        <h4>{tweet.tweet}</h4>
-                    </div>
+                    <Tweet 
+                    key={tweet.id} 
+                    tweetObj={tweet} 
+                    isOwner={tweet.creatorId === userObj.uid}/>
                 )}
         </div>
     </div>
