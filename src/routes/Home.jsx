@@ -6,7 +6,7 @@ import { dbService, storageService } from '../fbase';
 const Home = ({ userObj }) => {
     const [tweet, setTweet] = useState("");
     const [tweets, setTweets] = useState([]);
-    const [attachment, setAttachment] = useState();
+    const [attachment, setAttachment] = useState("");
 
     useEffect(() => {
         dbService.collection("tweets").onSnapshot(snapshot => {
@@ -21,20 +21,20 @@ const Home = ({ userObj }) => {
         event.preventDefault();
         let attachmentUrl = "";
 
-        if(attachment !== ""){
+        if (attachment !== "") {
             const attachmentRef = storageService
-            .ref()
-            .child(`${userObj.uid}/${uuidv4()}`);
+                .ref()
+                .child(`${userObj.uid}/${uuidv4()}`);
             const response = await attachmentRef.putString(attachment, "data_url");
             attachmentUrl = await response.ref.getDownloadURL();
 
         }
         const tweetObj = {
-        text: tweet,
-        createAt: Date.now(),
-        creatorId: userObj.multiFactor.user.uid,
-        attachmentUrl
-    }
+            text: tweet,
+            createAt: Date.now(),
+            creatorId: userObj.multiFactor.user.uid,
+            attachmentUrl
+        }
         await dbService.collection("tweets").add(tweetObj);
         setTweet("");
         setAttachment("");
