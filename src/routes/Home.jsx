@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Tweet from '../components/Tweet';
 import TweetFactory from '../components/TweetFactory';
 import { dbService, storageService } from '../fbase';
+import styled from 'styled-components';
 
 const Home = ({ userObj }) => {
     const [tweets, setTweets] = useState([]);
@@ -16,7 +17,7 @@ const Home = ({ userObj }) => {
     }, [])
 
     return (
-        <div>
+        <Container>
             <TweetFactory userObj={userObj} />
             <div>
                 {tweets.map(tweet =>
@@ -26,8 +27,16 @@ const Home = ({ userObj }) => {
                         isOwner={tweet.creatorId === userObj.uid} />
                 )}
             </div>
-        </div>
+        </Container>
     );
 };
 
 export default Home;
+
+const Container = styled.div`
+width: 100%;
+max-width: 320px;
+display: flex;
+flex-direction: column;
+
+`;

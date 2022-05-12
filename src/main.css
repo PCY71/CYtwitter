@@ -12,6 +12,12 @@ font-size: 14px;
 color: white;
 }
 
+input {
+    all: unset;
+    box-sizing: border-box;
+    appearance: none;
+}
+
 button {
     background-color: white;
     color: black;
