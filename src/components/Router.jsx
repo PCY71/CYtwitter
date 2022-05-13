@@ -4,6 +4,7 @@ import Auth from '../routes/Auth';
 import Home from '../routes/Home';
 import Navigation from './Navigation';
 import Profile from '../routes/Profile';
+import styled from 'styled-components';
 
 const AppRouter = ({ isLoggedIn, refreshUser, userObj }) => {
 
@@ -11,18 +12,22 @@ const AppRouter = ({ isLoggedIn, refreshUser, userObj }) => {
         <Router>
             {isLoggedIn && <Navigation userObj={userObj} />}
             <Routes>
-                {isLoggedIn ?
+                {isLoggedIn ? (
                     <>
                         <Route path="/" element={<Home userObj={userObj} />} />
                         <Route path="/profile" element={<Profile userObj={userObj} refreshUser={refreshUser} />} />
-                    </>
+                    </>)
                     :
                     <>
                         <Route path="/" element={<Auth />} />
                     </>}
             </Routes>
-        </Router>
+        </Router >
     )
 }
 
 export default AppRouter;
+
+const Container = styled.div`
+
+`;

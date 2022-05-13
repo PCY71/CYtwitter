@@ -39,7 +39,7 @@ const Profile = ({ userObj, refreshUser }) => {
     }
 
     return (
-        <>
+        <div className='twitter_container'>
             <form onSubmit={onSubmit}>
                 <input
                     onChange={onChange}
@@ -50,7 +50,7 @@ const Profile = ({ userObj, refreshUser }) => {
                 <input type="submit" value="Update Profile" />
             </form>
             <button onClick={onLogOutClick}>Log Out</button>
-        </>
+        </div>
     );
 };
 

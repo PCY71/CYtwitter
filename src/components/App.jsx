@@ -36,7 +36,7 @@ function App() {
           refreshUser={refreshUser}
           userObj={userObj} /> : "Initializing..."
       }
-      <footer>
+      <footer style={{ textAlign: "center", }}>
         &copy; CYtwitter {new Date().getFullYear()}
       </footer>
     </>

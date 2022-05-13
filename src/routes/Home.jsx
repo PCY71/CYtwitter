@@ -17,23 +17,25 @@ const Home = ({ userObj }) => {
     }, [])
 
     return (
-        <Container>
-            <TweetFactory userObj={userObj} />
-            <div>
-                {tweets.map(tweet =>
-                    <Tweet
-                        key={tweet.id}
-                        tweetObj={tweet}
-                        isOwner={tweet.creatorId === userObj.uid} />
-                )}
-            </div>
-        </Container>
+        <div className='twitter_container'>
+            <Wrapper>
+                <TweetFactory userObj={userObj} />
+                <div>
+                    {tweets.map(tweet =>
+                        <Tweet
+                            key={tweet.id}
+                            tweetObj={tweet}
+                            isOwner={tweet.creatorId === userObj.uid} />
+                    )}
+                </div>
+            </Wrapper>
+        </div>
     );
 };
 
 export default Home;
 
-const Container = styled.div`
+const Wrapper = styled.div`
 width: 100%;
 max-width: 320px;
 display: flex;
