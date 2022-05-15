@@ -75,10 +75,10 @@ export default Tweet;
 const TweetDiv = styled.div`
 display: flex;
 flex-direction: column;
-margin-bottom: 20px;
+margin-bottom: 40px;
 background-color: white;
 width: 100%;
-max-width: 320px;
+max-width: 400px;
 padding: 20px;
 border-radius: 10px;
 position: relative;
@@ -96,7 +96,6 @@ $ h4{
     margin-top: 10px;
 }
 `;
-
 const FormEdit = styled.form`
 width: 100%;
 max-width: 320px;
@@ -106,7 +105,6 @@ cursor: pointer;
 margin-top: 15px;
 margin-bottom: 5px;
 `;
-
 const FormInput = styled.input`
 width: 100%;
 padding: 10px 20px;
@@ -116,7 +114,6 @@ text-align: center;
 background-color: white;
 color: black;
 `;
-
 const FormBtn = styled.input`
 cursor: pointer;
 width: 100%;
@@ -127,7 +124,6 @@ border-radius: 20px;
 background-color: #04aaff;
 cursor: pointer;
 `;
-
 const CancelBtn = styled.span`
 cursor: pointer;
 width: 100%;
@@ -136,9 +132,7 @@ text-align: center;
 color: white;
 border-radius: 20px;
 background-color: tomato;
-cursor: pointer;
 `;
-
 const TweetActions = styled.div`
 position: absolute;
 right: 10px;

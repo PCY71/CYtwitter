@@ -37,8 +37,7 @@ export default Home;
 
 const Wrapper = styled.div`
 width: 100%;
-max-width: 320px;
+max-width: 400px;
 display: flex;
 flex-direction: column;
-
 `;
